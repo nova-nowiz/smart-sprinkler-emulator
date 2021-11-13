@@ -11,7 +11,7 @@ class MoistureSensor: SensorInterface {
 
     override fun registerController(controller: Controller) {
         myController = controller
-        controller.getCurrentTime()
+
     }
 
     override fun pollUpdates(newTime: Int) {
@@ -20,14 +20,14 @@ class MoistureSensor: SensorInterface {
 
         updateCurrentMoistureValue()
 
-        myController.setCurrentMoisture(currentMoisture)
+        myController.currentMoisture = currentMoisture
     }
 
     private fun updateCurrentMoistureValue (){
-        if(myController.getIsPrecipitating()){
+        if(myController.isPrecipitating){
             currentMoisture += precipitationRate * deltaTime
         }
-        else if(myController.getIsSprinkling()){
+        else if(myController.isSprinkling){
             currentMoisture = sprinklingRate * deltaTime
         }
         else {

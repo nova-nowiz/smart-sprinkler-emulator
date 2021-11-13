@@ -6,13 +6,13 @@ class Controller (
         newState: Boolean, // TRUE = Active, FALSE = Standby (placeholder)
         newMode: Boolean//, // TRUE = Smart mode, FALSE = Manual mode (placeholder)
 ) {
-    private var currentTime: Int
-    private var state: Boolean
-    private var mode: Boolean
-    private var currentMoisture: Int
-    private var isPrecipitating: Boolean
-    private var registeredSensors: ArrayList<SensorInterface>
-    private var isSprinkling: Boolean
+    var currentTime: Int
+    var state: Boolean
+    var mode: Boolean
+    var currentMoisture: Int
+    var isPrecipitating: Boolean
+    var registeredSensors: ArrayList<SensorInterface>
+    var isSprinkling: Boolean
 
     init {
         currentTime = newTime
@@ -53,37 +53,5 @@ class Controller (
         }
         // progress time
         currentTime++
-    }
-
-    fun setCurrentMoisture(newMoistureValue: Int){
-        currentMoisture = newMoistureValue
-    }
-
-    fun getCurrentMoisture(): Int {
-        return currentMoisture;
-    }
-
-    fun setIsPrecipitating(newIsPrecipitating: Boolean){
-        isPrecipitating = newIsPrecipitating
-    }
-
-    fun getIsPrecipitating() : Boolean {
-        return isPrecipitating
-    }
-
-    fun getIsSprinkling(): Boolean {
-        return isSprinkling
-    }
-
-    fun setState(newState: Boolean){
-        state = newState
-    }
-
-    fun setMode(newMode: Boolean){
-        mode = newMode
-    }
-
-    fun getCurrentTime(): Int  {
-        return currentTime
     }
 }

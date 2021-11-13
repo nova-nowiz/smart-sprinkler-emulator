@@ -10,10 +10,10 @@ fun main(args : Array<String>) {
     controller.registerSensors(ForecastSensor(), MoistureSensor())
 
     while(true) {
-        println("it's hour " + controller.getCurrentTime())
-        println("moisture level: " + controller.getCurrentMoisture())
+        println("it's hour " + controller.currentTime)
+        println("moisture level: " + controller.currentMoisture)
         //precipitation = (hour >= precipitationStart) and (hour <= precipitationStop)
-        println("precipitation: " + controller.getIsPrecipitating())
+        println("precipitation: " + controller.isPrecipitating)
         // controller
         controller.update()
 

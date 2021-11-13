@@ -6,7 +6,7 @@ class ForecastSensor: SensorInterface {
 
     override fun registerController(controller: Controller) {
         myController = controller
-        currentTime = controller.getCurrentTime()
+        currentTime = controller.currentTime
     }
 
     override fun pollUpdates(newTime: Int) {
@@ -14,7 +14,7 @@ class ForecastSensor: SensorInterface {
         currentTime = newTime
 
         updateIsPrecipating()
-        myController.setIsPrecipitating(isPrecipitating)
+        myController.isPrecipitating = isPrecipitating
     }
 
     private fun updateIsPrecipating() {

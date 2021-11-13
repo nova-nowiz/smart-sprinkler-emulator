@@ -32,7 +32,7 @@ class Controller (
         }
     }
 
-    fun update(newTime: Int)
+    fun update()
     {
         // check current state is 'Active' and mode is 'Smart'
         if(state && mode) {

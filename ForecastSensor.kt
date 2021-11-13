@@ -1,23 +1,16 @@
-class ForecastSensor: SensorInterface {
-    private lateinit var myController: Controller
-    private var currentTime: Int = 0
-    private var deltaTime: Int = 0
-    private var isPrecipitating: Boolean = false
+class ForecastSensor (
+        _currentTime: Int
+){
+    var currentTime: Int = _currentTime
+    var deltaTime: Int = 0
+    var isPrecipitating: Boolean = false
+    val precipitationStart = 3
+    val precipitationStop = 5
 
-    override fun registerController(controller: Controller) {
-        myController = controller
-        currentTime = controller.currentTime
-    }
-
-    override fun pollUpdates(newTime: Int) {
+    fun update(newTime: Int) {
         deltaTime = newTime - currentTime
         currentTime = newTime
 
-        updateIsPrecipating()
-        myController.isPrecipitating = isPrecipitating
-    }
-
-    private fun updateIsPrecipating() {
-        isPrecipitating = false;   // set default false
+        isPrecipitating = (currentTime >= precipitationStart) && (currentTime <= precipitationStop)
     }
 }

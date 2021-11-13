@@ -1,41 +1,46 @@
-
-
 class Controller (
         // class properties
         _currentTime:Int
 ) {
     var currentTime: Int = _currentTime
-    var currentMoisture: Int = 0
+    var moistureSensor: MoistureSensor = MoistureSensor(currentTime)
+    var forecastSensor: ForecastSensor = ForecastSensor(currentTime)
+    var currentMoisture: Int = moistureSensor.currentMoisture
     var isPrecipitating: Boolean = false
-    var registeredSensors: ArrayList<SensorInterface> = arrayListOf<SensorInterface>()
     var isSprinkling: Boolean = false
-
-    // register one or more sensors with this controller
-    fun registerSensors(vararg sensorsToRegister:SensorInterface ){
-        sensorsToRegister.forEach { sensor ->
-            registeredSensors.add(sensor)
-            sensor.registerController(this);
-        }
-    }
 
     fun update()
     {
-        // poll registered sensors for data
-        registeredSensors.forEach { sensor ->
-            sensor.pollUpdates(currentTime)
+        // poll forecast sensor
+        forecastSensor.update(currentTime)
+        isPrecipitating = forecastSensor.isPrecipitating
+
+        if(isPrecipitating && isSprinkling){
+            isSprinkling = false
         }
 
-        // check moisture level and forecasted precipitation
-        if (currentMoisture <= 0 && !isPrecipitating && !isSprinkling) {
-            isSprinkling = true
-            // update 'Sprinkler'
+        // poll moisture sensor
+        moistureSensor.update(currentTime, isPrecipitating, isSprinkling)
+        currentMoisture = moistureSensor.currentMoisture
+
+        if(currentMoisture <= 0)
+        {
+            if (!isPrecipitating && !isSprinkling) {
+                isSprinkling = true
+                // update 'Sprinkler'
+            }
         }
-        if (isSprinkling && (currentMoisture >= 100 || isPrecipitating)) {
-            isSprinkling = false;
+        else if (currentMoisture >= 100 && isSprinkling)
+        {
+            isSprinkling = false
             // update 'Sprinkler'
         }
 
         // progress time
         currentTime++
+        if(currentTime % 24 == 0)
+        {
+            currentTime = 0
+        }
     }
 }

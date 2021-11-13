@@ -7,8 +7,6 @@ fun main(args : Array<String>) {
 
     val controller = Controller(hour)
 
-    controller.registerSensors(ForecastSensor(), MoistureSensor())
-
     while(true) {
         println("it's hour " + controller.currentTime)
         println("moisture level: " + controller.currentMoisture)

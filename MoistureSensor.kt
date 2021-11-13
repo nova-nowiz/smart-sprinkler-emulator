@@ -1,34 +1,29 @@
-class MoistureSensor: SensorInterface {
-    private lateinit var myController: Controller
-    private var currentTime: Int = 0
-    private var deltaTime: Int = 0
-    private var currentMoisture: Int = 100
-    private val precipitationRate = 30
-    private val dryingRate = 5
-    private val sprinklingRate = 20
+class MoistureSensor (
+        _currentTime: Int
+){
+    var currentTime: Int = _currentTime
+    var deltaTime: Int = 0
+    var currentMoisture: Int = 10
+    val precipitationRate = 30
+    val dryingRate = 5
+    val sprinklingRate = 20
 
-
-
-    override fun registerController(controller: Controller) {
-        myController = controller
-
-    }
-
-    override fun pollUpdates(newTime: Int) {
-        deltaTime = newTime - currentTime
-        currentTime = newTime
-
-        updateCurrentMoistureValue()
-
-        myController.currentMoisture = currentMoisture
-    }
-
-    private fun updateCurrentMoistureValue (){
-        if(myController.isPrecipitating){
-            currentMoisture += precipitationRate * deltaTime
+    // update will get precipitating and sprinklersOn flag from controller initially, until features coded
+    fun update(newTime: Int, isPrecipitating: Boolean, isSprinkling: Boolean) {
+        if(newTime == 0 && currentTime == 23){
+            deltaTime = 1
+            currentTime = newTime
         }
-        else if(myController.isSprinkling){
-            currentMoisture = sprinklingRate * deltaTime
+        else {
+            deltaTime = newTime - currentTime
+            currentTime = newTime
+        }
+
+        if(isSprinkling){
+            currentMoisture += sprinklingRate * deltaTime
+        }
+        else if (isPrecipitating){
+            currentMoisture += precipitationRate * deltaTime
         }
         else {
             currentMoisture -= dryingRate * deltaTime
@@ -37,5 +32,4 @@ class MoistureSensor: SensorInterface {
             }
         }
     }
-
 }

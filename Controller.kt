@@ -2,27 +2,13 @@
 
 class Controller (
         // class properties
-        newTime:Int,
-        newState: Boolean, // TRUE = Active, FALSE = Standby (placeholder)
-        newMode: Boolean//, // TRUE = Smart mode, FALSE = Manual mode (placeholder)
+        _currentTime:Int
 ) {
-    var currentTime: Int
-    var state: Boolean
-    var mode: Boolean
-    var currentMoisture: Int
-    var isPrecipitating: Boolean
-    var registeredSensors: ArrayList<SensorInterface>
-    var isSprinkling: Boolean
-
-    init {
-        currentTime = newTime
-        state = newState
-        mode = newMode
-        currentMoisture = 0
-        isPrecipitating = false
-        registeredSensors = arrayListOf<SensorInterface>()
-        isSprinkling = false
-    }
+    var currentTime: Int = _currentTime
+    var currentMoisture: Int = 0
+    var isPrecipitating: Boolean = false
+    var registeredSensors: ArrayList<SensorInterface> = arrayListOf<SensorInterface>()
+    var isSprinkling: Boolean = false
 
     // register one or more sensors with this controller
     fun registerSensors(vararg sensorsToRegister:SensorInterface ){
@@ -34,23 +20,21 @@ class Controller (
 
     fun update()
     {
-        // check current state is 'Active' and mode is 'Smart'
-        if(state && mode) {
-            // poll registered sensors for data
-            registeredSensors.forEach { sensor ->
-                sensor.pollUpdates(currentTime)
-            }
-
-            // check moisture level and forecasted precipitation
-            if (currentMoisture <= 0 && !isPrecipitating && !isSprinkling) {
-                isSprinkling = true
-                // update 'Sprinkler'
-            }
-            if (isSprinkling && (currentMoisture >= 100 || isPrecipitating)) {
-                isSprinkling = false;
-                // update 'Sprinkler'
-            }
+        // poll registered sensors for data
+        registeredSensors.forEach { sensor ->
+            sensor.pollUpdates(currentTime)
         }
+
+        // check moisture level and forecasted precipitation
+        if (currentMoisture <= 0 && !isPrecipitating && !isSprinkling) {
+            isSprinkling = true
+            // update 'Sprinkler'
+        }
+        if (isSprinkling && (currentMoisture >= 100 || isPrecipitating)) {
+            isSprinkling = false;
+            // update 'Sprinkler'
+        }
+
         // progress time
         currentTime++
     }

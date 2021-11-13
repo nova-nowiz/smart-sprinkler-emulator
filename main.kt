@@ -5,7 +5,7 @@ fun main(args : Array<String>) {
     // val: values (do not change)
     var hour: Int = 0
 
-    val controller = Controller(hour, true, true)
+    val controller = Controller(hour)
 
     controller.registerSensors(ForecastSensor(), MoistureSensor())
 

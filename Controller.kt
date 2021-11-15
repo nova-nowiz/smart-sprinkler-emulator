@@ -9,8 +9,7 @@ class Controller (
     var isPrecipitating: Boolean = false
     var isSprinkling: Boolean = false
 
-    fun update()
-    {
+    fun update() {
         // poll forecast sensor
         isPrecipitating = forecastSensor.isPrecipitating(currentTime)
 

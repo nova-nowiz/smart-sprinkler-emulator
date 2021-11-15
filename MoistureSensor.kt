@@ -11,7 +11,7 @@ class MoistureSensor (
     // update will get precipitating and sprinklersOn flag from controller initially, until features coded
     fun update(newTime: Int, isPrecipitating: Boolean, isSprinkling: Boolean) {
         currentTime = newTime
-        
+
         if(isSprinkling){
             currentMoisture += sprinklingRate * deltaTime
         }
@@ -20,9 +20,6 @@ class MoistureSensor (
         }
         else {
             currentMoisture -= dryingRate * deltaTime
-            if(currentMoisture < 0){
-                currentMoisture = 0
-            }
         }
     }
 }

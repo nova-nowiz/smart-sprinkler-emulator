@@ -3,7 +3,7 @@
 fun main(args : Array<String>) {
     // var: variables (changes)
     // val: values (do not change)
-    var hour: Int = 0
+    val hour: Int = 0
 
     val controller = Controller(hour)
 

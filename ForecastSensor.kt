@@ -1,6 +1,4 @@
-class ForecastSensor (
-        _currentTime: Int
-){
+class ForecastSensor () {
     val precipitationStart = 3
     val precipitationStop = 5
 

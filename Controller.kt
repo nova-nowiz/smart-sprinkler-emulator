@@ -23,9 +23,7 @@ class Controller (
         moistureSensor.update(currentTime, isPrecipitating, isSprinkling)
         currentMoisture = moistureSensor.currentMoisture
 
-        if(currentMoisture <= 0)
-        {
-            if (!isPrecipitating && !isSprinkling) {
+        if(currentMoisture <= 0 and !isPrecipitating and !isSprinkling) {
                 isSprinkling = true
                 // update 'Sprinkler'
             }

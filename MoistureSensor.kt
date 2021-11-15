@@ -1,5 +1,5 @@
-class MoistureSensor (
-){
+class MoistureSensor(
+) {
     var currentMoisture: Int = 10
     val precipitationRate = 30
     val dryingRate = 5
@@ -7,13 +7,11 @@ class MoistureSensor (
 
     // update will get precipitating and sprinklersOn flag from controller initially, until features coded
     fun update(isPrecipitating: Boolean, isSprinkling: Boolean) {
-        if(isSprinkling) {
+        if (isSprinkling) {
             currentMoisture += sprinklingRate
-        }
-        else if (isPrecipitating) {
+        } else if (isPrecipitating) {
             currentMoisture += precipitationRate
-        }
-        else {
+        } else {
             currentMoisture -= dryingRate
         }
     }

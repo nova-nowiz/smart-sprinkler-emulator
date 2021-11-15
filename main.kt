@@ -1,6 +1,6 @@
 // Hello World Program
 
-fun main(args : Array<String>) {
+fun main(args: Array<String>) {
     // var: variables (changes)
     // val: values (do not change)
     val hour: Int = 0
@@ -8,7 +8,7 @@ fun main(args : Array<String>) {
     val controller = Controller(hour)
 
     var input: String = ""
-    while(input != "quit") {
+    while (input != "quit") {
         println("it's hour " + controller.currentTime)
         println("moisture level: " + controller.currentMoisture)
         //precipitation = (hour >= precipitationStart) and (hour <= precipitationStop)

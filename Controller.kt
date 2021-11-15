@@ -12,7 +12,7 @@ class Controller (
     fun update()
     {
         // poll forecast sensor
-        isPrecipitating = forecastSensor.getIsPrecipitating()
+        isPrecipitating = forecastSensor.isPrecipitating(currentTime)
 
         if(isPrecipitating && isSprinkling){
             isSprinkling = false

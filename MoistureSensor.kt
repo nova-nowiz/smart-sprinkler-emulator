@@ -1,5 +1,4 @@
 class MoistureSensor (
-        _currentTime: Int
 ){
     var currentMoisture: Int = 10
     val precipitationRate = 30

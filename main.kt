@@ -19,11 +19,7 @@ fun main(args : Array<String>) {
         //time passes
 
         // imaging every time we press enter, one hour passes
-        val foo = readLine()!!
-        // end program through command line
-        if(foo == "quit"){
-            break
-        }
+        input = readLine() ?: ""
 
         // imagine every second is one hour irl
         // Thread.sleep(1000)

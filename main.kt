@@ -7,7 +7,8 @@ fun main(args : Array<String>) {
 
     val controller = Controller(hour)
 
-    while(true) {
+    var input: String = ""
+    while(input != "quit") {
         println("it's hour " + controller.currentTime)
         println("moisture level: " + controller.currentMoisture)
         //precipitation = (hour >= precipitationStart) and (hour <= precipitationStop)

@@ -6,8 +6,7 @@ class ForecastSensor (
     val precipitationStart = 3
     val precipitationStop = 5
 
-    fun getIsPrecipitating() : Boolean{
-        isPrecipitating = (currentTime >= precipitationStart) && (currentTime <= precipitationStop)
-        return isPrecipitating
+    fun isPrecipitating(currentTime: Int) : Boolean{
+        return (currentTime >= precipitationStart) && (currentTime <= precipitationStop)
     }
 }

@@ -1,10 +1,10 @@
+package smart.sprinkler.emulator
 class Controller(
-    // class properties
     _currentTime: Int
 ) {
     var currentTime: Int = _currentTime
-    var moistureSensor: MoistureSensor = MoistureSensor()
-    var forecastSensor: ForecastSensor = ForecastSensor()
+    val moistureSensor: MoistureSensor = MoistureSensor()
+    val forecastSensor: ForecastSensor = ForecastSensor()
     var currentMoisture: Int = moistureSensor.currentMoisture
     var isPrecipitating: Boolean = false
     var isSprinkling: Boolean = false

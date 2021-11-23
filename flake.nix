@@ -22,18 +22,19 @@
             }
             {
               name = "run";
-              command = "kotlinc main.kt -include-runtime -d main.jar && kotlin main.jar";
+              command = "gradle run -q"; # one could use ./gradlew instead of gradle
               help = "runs this project";
             }
             {
               name = "build";
-              command = "kotlinc main.kt -include-runtime -d main.jar";
+              command = "gradle build";
               help = "builds this project";
             }
           ];
           devshell.packages = with pkgs; [
-            kotlin
             gitflow
+            gradle
+            jdk
           ];
           language.c.libraries = with pkgs; [
           ];

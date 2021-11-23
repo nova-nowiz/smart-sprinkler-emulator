@@ -1,5 +1,5 @@
-class MoistureSensor(
-) {
+package smart.sprinkler.emulator
+class MoistureSensor() {
     var currentMoisture: Int = 10
     val precipitationRate = 30
     val dryingRate = 5

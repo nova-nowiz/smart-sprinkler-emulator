@@ -1,3 +1,4 @@
+package smart.sprinkler.emulator
 class ForecastSensor() {
     val precipitationStart = 3
     val precipitationStop = 5

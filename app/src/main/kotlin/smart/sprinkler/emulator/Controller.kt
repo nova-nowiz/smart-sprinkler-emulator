@@ -125,7 +125,7 @@ class Controller(
                 + "\t"
                 + "willPrecipitate"
                 + "\t"
-                + "isPrinkling"
+                + "isSprinkling"
             )
         }
         print(""

@@ -28,6 +28,16 @@ class ForecastSensor() {
         // if there is a precipitation before the afterCycleDay,
         // then it will precipitate
 
+        // here we check for the edge case of the currentDay being
+        // the same as the afterCycleDay
+        if (afterCycleDay == currentDay) {
+            for (precipitation in precipitations[currentDay]) {
+                if ((currentTime <= precipitation.first) and (precipitation.first <= afterCycleTime)) {
+                    return true
+                }
+            }
+            return false
+        }
         // here we are going to check for the current day if
         // there is going to be precipitation
         //
@@ -42,12 +52,11 @@ class ForecastSensor() {
         // between the current day and afterCycleDay
         // there will be precipitation
         //
-        // if afterCycleDay and currentDay are the same
-        // or if they are adjacent,
+        // if afterCycleDay and currentDay are adjacent
         // there are no days in between the two
         // we also check if afterCycleDay looped around or not
         // we consider here that the afterCycleDay can't be 1 week or more in the future
-        if ((afterCycleDay == currentDay) or (afterCycleDay == ((currentDay+1) % precipitations.size))) {
+        if (afterCycleDay == ((currentDay+1) % precipitations.size)) {
         } else if (afterCycleDay > currentDay) {
             // if it didn't loop around, just check the comming days
             for (dayPrecipitations in precipitations.slice((currentDay+1)..(afterCycleDay-1))) {

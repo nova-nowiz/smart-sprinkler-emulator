@@ -1,8 +1,6 @@
 package smart.sprinkler.emulator
 
 import kotlin.test.Test
-import kotlin.test.assertNotNull
-import org.mockito.kotlin.*
 
 class ControllerTest {
     val moistureSensor = MoistureSensor(
